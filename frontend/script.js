@@ -28,7 +28,7 @@ function previousQuestion() {
 }
 
 document.getElementById("formSlideshow").addEventListener("submit", function(event) {
-  event.preventDefault();
+  event.preventDefault(); // Prevent default form submission
   
   let unansweredQuestions = false;
   let questions = document.getElementsByClassName("question");
@@ -77,7 +77,7 @@ fetch(url, {
   .then(data => {
     const prediction = data['predictions'];
     const predictionElement = document.getElementsByClassName("prediction")[0];
-    predictionElement.innerText = "";
+    predictionElement.innerText = ""; // Clear previous prediction
     predictionElement.innerText = "$" + prediction[0].toFixed(2);
   })
   .catch(error => console.error(error));
