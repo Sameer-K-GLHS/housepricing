@@ -1,0 +1,164 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+html {
+  background-image: url("https://img.freepik.com/free-vector/isometric-house-background_1284-17392.jpg?w=826&t=st=1687644050~exp=1687644650~hmac=9448aafbcf45c9d1b73cbb89978fdf9500172a2900d04f1ec18cfe908034a082");
+  background-size: cover;
+  background-repeat:   no-repeat;
+  background-position: center center;
+}
+
+body {		
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.title {
+  background-color: #fff;
+  font-size: clamp(10px, 4.5vw, 50px); 
+  font-weight: bold;
+  text-transform:uppercase; 
+  text-align:center;
+  margin: 0 auto; 
+  white-space:nowrap; 
+  border:2px solid #222;
+  padding:5px 11px 3px 11px;
+}
+
+form {
+  background-color: #004e8a;
+  width: 90%;
+  max-width: 600px;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.question {
+  margin-bottom: 20px;
+  animation: slideInLeft 0.5s ease;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+h3 {
+  color: #fff;
+  font-size: 18px;
+  margin: 10px 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+select,
+input[type="text"],
+input[type="number"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 16px;
+  animation: slideInRight 0.5s ease;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  animation: fadeIn 1s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button:active {
+  background-color: #3c9039;
+}
+
+button[type="submit"] {
+  background-color: #008CBA;
+}
+
+button[type="submit"]:hover {
+  background-color: #0077a3;
+}
+
+button[type="submit"]:active {
+  background-color: #006380;
+}
+
+.result {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 0 20px 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.price-title {
+  font-size: 20px;
+}
+
+.prediction {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 0;
+  color: #098a00
+}
+
+#errorDropdown {
+  display: none;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #ffcccc;
+  color: #cc0000;
+  border: 1px solid #cc0000;
+  border-radius: 4px;
+  overflow: hidden;
+}

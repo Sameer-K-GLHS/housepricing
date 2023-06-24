@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>House Pricing Predictor</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="icon" type="image/x-icon" href="https://em-content.zobj.net/thumbs/120/apple/354/house_1f3e0.png">
+</head>
+<body>
+  <div id="errorDropdown">Please answer all questions before submitting the form.</div>
+
+  <h1 class="title">House Pricing Predictor - Ames City</h1>
+  
+  <form id="formSlideshow" onsubmit="event.preventDefault();">
+    <div class="question" id="question1">
+      <h3> Identify the type of dwelling involved in the sale:</h3>
+      <select name="MSSubClass" id="MSSubClass">
+        <option value="20">1-STORY 1946 & NEWER ALL STYLES</option>
+        <option value="30">1-STORY 1945 & OLDER</option>
+        <option value="40">1-STORY W/FINISHED ATTIC ALL AGES</option>
+        <option value="45">1-1/2 STORY - UNFINISHED ALL AGES</option>
+        <option value="50">1-1/2 STORY FINISHED ALL AGES</option>
+        <option value="60">2-STORY 1946 & NEWER</option>
+        <option value="70">2-STORY 1945 & OLDER</option>
+        <option value="75">2-1/2 STORY ALL AGES</option>
+        <option value="80">SPLIT OR MULTI-LEVEL</option>
+        <option value="85">SPLIT FOYER</option>
+        <option value="90">DUPLEX - ALL STYLES AND AGES</option>
+        <option value="120">1-STORY PUD (Planned Unit Development) - 1946 & NEWER</option>
+        <option value="150">1-1/2 STORY PUD - ALL AGES</option>
+        <option value="160">2-STORY PUD - 1946 & NEWER</option>
+        <option value="180">PUD - MULTILEVEL - INCL SPLIT LEV/FOYER</option>
+        <option value="190">2 FAMILY CONVERSION - ALL STYLES AND AGES</option>
+      </select>
+    </div>
+    
+    <div class="question" id="question2">
+      <h3>Identify the general zoning classification of the sale:</h3>
+        <select>
+          <option value="A">Agriculture</option>
+          <option value="C">Commercial</option>
+          <option value="FV">Floating Village Residential</option>
+          <option value="I">Industrial</option>
+          <option value="RH">Residential High Density</option>
+          <option value="RL">Residential Low Density</option>
+          <option value="RP">Residential Low Density Park</option>
+          <option value="RM">Residential Medium Density</option>
+        </select>
+    </div>
+    
+    <div class="question" id="question3">
+      <h3>Enter LotFrontage(Linear feet of street connected to property):</h3>
+      <input type="number" placeholder="Enter your answer">
+    </div>
+    
+    <div class="question" id="question4">
+      <h3>Enter LotArea(Lot size in square feet):</h3>
+      <input type="number" placeholder="Enter your answer">
+    </div>
+
+    <div class="question" id="question5">
+      <h3>Identify Type of road access to property:</h3>
+        <select>
+          <option value="Grvl">Gravel</option>
+          <option value="Pave">Paved</option>
+        </select>
+    </div>
+
+    <div class="question" id="question6">
+      <h3>Identify Type of alley access to property:</h3>
+        <select>
+          <option value="Grvl">Gravel</option>
+          <option value="Pave">Paved</option>
+          <option value="NA">No Alley Access</option>
+        </select>
+    </div>
+
+
+<div class="question" id="question7">
+  <h3>LotShape: General shape of property</h3>
+  <select id="lotshape">
+    <option value="Reg">Regular</option>
+    <option value="IR1">Slightly irregular</option>
+    <option value="IR2">Moderately Irregular</option>
+    <option value="IR3">Irregular</option>
+  </select>
+</div>
+<div class="question" id="question8">
+  <h3>LandContour: Flatness of the property</h3>
+  <select id="landcontour">
+    <option value="Lvl">Near Flat/Level</option>
+    <option value="Bnk">Banked - Quick and significant rise from street grade to building</option>
+    <option value="HLS">Hillside - Significant slope from side to side</option>
+    <option value="Low">Depression</option>
+  </select>
+</div>
+<div class="question" id="question9">
+  <h3>Utilities: Type of utilities available</h3>
+  <select id="utilities">
+    <option value="AllPub">All public Utilities (E,G,W,& S)</option>
+    <option value="NoSewr">Electricity, Gas, and Water (Septic Tank)</option>
+    <option value="NoSeWa">Electricity and Gas Only</option>
+    <option value="ELO">Electricity only</option>
+  </select>
+</div>
+<div class="question" id="question10">
+  <h3>LotConfig: Lot configuration</h3>
+  <select id="lotconfig">
+    <option value="Inside">Inside lot</option>
+    <option value="Corner">Corner lot</option>
+    <option value="CulDSac">Cul-de-sac</option>
+    <option value="FR2">Frontage on 2 sides of property</option>
+    <option value="FR3">Frontage on 3 sides of property</option>
+  </select>
+</div>
+<div class="question" id="question11">
+  <h3>LandSlope: Slope of property</h3>
+  <select id="landslope">
+    <option value="Gtl">Gentle slope</option>
+    <option value="Mod">Moderate Slope</option>
+    <option value="Sev">Severe Slope</option>
+  </select>
+</div>
+<div class="question" id="question12">
+  <h3>Neighborhood: Physical locations within Ames city limits</h3>
+  <select id="neighborhood">
+    <option value="Blmngtn">Bloomington Heights</option>
+    <option value="Blueste">Bluestem</option>
+    <option value="BrDale">Briardale</option>
+    <option value="BrkSide">Brookside</option>
+    <option value="ClearCr">Clear Creek</option>
+    <option value="CollgCr">College Creek</option>
+    <option value="Crawfor">Crawford</option>
+    <option value="Edwards">Edwards</option>
+    <option value="Gilbert">Gilbert</option>
+    <option value="IDOTRR">Iowa DOT and Rail Road</option>
+    <option value="MeadowV">Meadow Village</option>
+    <option value="Mitchel">Mitchell</option>
+    <option value="Names">North Ames</option>
+    <option value="NoRidge">Northridge</option>
+    <option value="NPkVill">Northpark Villa</option>
+    <option value="NridgHt">Northridge Heights</option>
+    <option value="NWAmes">Northwest Ames</option>
+    <option value="OldTown">Old Town</option>
+    <option value="SWISU">South & West of Iowa State University</option>
+    <option value="Sawyer">Sawyer</option>
+    <option value="SawyerW">Sawyer West</option>
+    <option value="Somerst">Somerset</option>
+    <option value="StoneBr">Stone Brook</option>
+    <option value="Timber">Timberland</option>
+    <option value="Veenker">Veenker</option>
+  </select>
+</div>
+<div class="question" id="question13">
+  <h3>Condition1: Proximity to various conditions</h3>
+  <select id="condition1">
+    <option value="Artery">Adjacent to arterial street</option>
+    <option value="Feedr">Adjacent to feeder street</option>
+    <option value="Norm">Normal</option>
+    <option value="RRNn">Within 200' of North-South Railroad</option>
+    <option value="RRAn">Adjacent to North-South Railroad</option>
+    <option value="PosN">Near positive off-site feature--park, greenbelt, etc.</option>
+    <option value="PosA">Adjacent to positive off-site feature</option>
+    <option value="RRNe">Within 200' of East-West Railroad</option>
+    <option value="RRAe">Adjacent to East-West Railroad</option>
+  </select>
+</div>
+<div class="question" id="question14">
+  <h3>Condition2: Proximity to various conditions (if more than one is present)</h3>
+  <select id="condition2">
+    <option value="Artery">Adjacent to arterial street</option>
+    <option value="Feedr">Adjacent to feeder street</option>
+    <option value="Norm">Normal</option>
+    <option value="RRNn">Within 200' of North-South Railroad</option>
+    <option value="RRAn">Adjacent to North-South Railroad</option>
+    <option value="PosN">Near positive off-site feature--park, greenbelt, etc.</option>
+    <option value="PosA">Adjacent to positive off-site feature</option>
+    <option value="RRNe">Within 200' of East-West Railroad</option>
+    <option value="RRAe">Adjacent to East-West Railroad</option>
+  </select>
+</div>
+<div class="question" id="question15">
+  <h3>BldgType: Type of dwelling</h3>
+  <select id="bldgtype">
+    <option value="1Fam">Single-family Detached</option>
+    <option value="2FmCon">Two-family Conversion; originally built as one-family dwelling</option>
+    <option value="Duplx">Duplex</option>
+    <option value="TwnhsE">Townhouse End Unit</option>
+    <option value="TwnhsI">Townhouse Inside Unit</option>
+  </select>
+</div>
+<div class="question" id="question16">
+  <h3>HouseStyle: Style of dwelling</h3>
+  <select id="housestyle">
+    <option value="1Story">One story</option>
+    <option value="1.5Fin">One and one-half story: 2nd level finished</option>
+    <option value="1.5Unf">One and one-half story: 2nd level unfinished</option>
+    <option value="2Story">Two story</option>
+    <option value="2.5Fin">Two and one-half story: 2nd level finished</option>
+    <option value="2.5Unf">Two and one-half story: 2nd level unfinished</option>
+    <option value="SFoyer">Split Foyer</option>
+    <option value="SLvl">Split Level</option>
+  </select>
+</div>
+<div class="question" id="question17">
+  <h3>OverallQual: Rates the overall material and finish of the house</h3>
+  <select id="overallqual">
+    <option value="10">Very Excellent</option>
+    <option value="9">Excellent</option>
+    <option value="8">Very Good</option>
+    <option value="7">Good</option>
+    <option value="6">Above Average</option>
+    <option value="5">Average</option>
+    <option value="4">Below Average</option>
+    <option value="3">Fair</option>
+    <option value="2">Poor</option>
+    <option value="1">Very Poor</option>
+  </select>
+</div>
+<div class="question" id="question18">
+  <h3>OverallCond: Rates the overall condition of the house</h3>
+  <select id="overallcond">
+    <option value="10">Very Excellent</option>
+    <option value="9">Excellent</option>
+    <option value="8">Very Good</option>
+    <option value="7">Good</option>
+    <option value="6">Above Average</option>
+    <option value="5">Average</option>
+    <option value="4">Below Average</option>
+    <option value="3">Fair</option>
+    <option value="2">Poor</option>
+    <option value="1">Very Poor</option>
+  </select>
+</div>
+
+<div class="question" id="question19">
+  <h3>YearBuilt: Original construction date</h3>
+  <input type="number" id="yearbuilt" placeholder="Enter year">
+</div>
+<div class="question" id="question20">
+  <h3>YearRemodAdd: Remodel date (same as construction date if no remodeling or additions)</h3>
+  <input type="number" id="yearremodadd" placeholder="Enter year">
+</div>
+
+
+<div class="question" id="question21">
+  <h3>RoofStyle: Type of roof</h3>
+  <select id="roofstyle">
+    <option value="Flat">Flat</option>
+    <option value="Gable">Gable</option>
+    <option value="Gambrel">Gabrel (Barn)</option>
+    <option value="Hip">Hip</option>
+    <option value="Mansard">Mansard</option>
+    <option value="Shed">Shed</option>
+  </select>
+</div>
+<div class="question" id="question22">
+  <h3>RoofMatl: Roof material</h3>
+  <select id="roofmatl">
+    <option value="ClyTile">Clay or Tile</option>
+    <option value="CompShg">Standard (Composite) Shingle</option>
+    <option value="Membran">Membrane</option>
+    <option value="Metal">Metal</option>
+    <option value="Roll">Roll</option>
+    <option value="Tar&Grv">Gravel & Tar</option>
+    <option value="WdShake">Wood Shakes</option>
+    <option value="WdShngl">Wood Shingles</option>
+  </select>
+</div>
+<div class="question" id="question23">
+  <h3>Exterior1st: Exterior covering on house</h3>
+  <select id="exterior1st">
+    <option value="AsbShng">Asbestos Shingles</option>
+    <option value="AsphShn">Asphalt Shingles</option>
+    <option value="BrkComm">Brick Common</option>
+    <option value="BrkFace">Brick Face</option>
+    <option value="CBlock">Cinder Block</option>
+    <option value="CemntBd">Cement Board</option>
+    <option value="HdBoard">Hard Board</option>
+    <option value="ImStucc">Imitation Stucco</option>
+    <option value="MetalSd">Metal Siding</option>
+    <option value="Other">Other</option>
+    <option value="Plywood">Plywood</option>
+    <option value="PreCast">PreCast</option>
+    <option value="Stone">Stone</option>
+    <option value="Stucco">Stucco</option>
+    <option value="VinylSd">Vinyl Siding</option>
+    <option value="Wd Sdng">Wood Siding</option>
+    <option value="WdShing">Wood Shingles</option>
+  </select>
+</div>
+<div class="question" id="question24">
+  <h3>Exterior2nd: Exterior covering on house (if more than one material)</h3>
+  <select id="exterior2nd">
+    <option value="AsbShng">Asbestos Shingles</option>
+    <option value="AsphShn">Asphalt Shingles</option>
+    <option value="BrkComm">Brick Common</option>
+    <option value="BrkFace">Brick Face</option>
+    <option value="CBlock">Cinder Block</option>
+    <option value="CemntBd">Cement Board</option>
+    <option value="HdBoard">Hard Board</option>
+    <option value="ImStucc">Imitation Stucco</option>
+    <option value="MetalSd">Metal Siding</option>
+    <option value="Other">Other</option>
+    <option value="Plywood">Plywood</option>
+    <option value="PreCast">PreCast</option>
+    <option value="Stone">Stone</option>
+    <option value="Stucco">Stucco</option>
+    <option value="VinylSd">Vinyl Siding</option>
+    <option value="Wd Sdng">Wood Siding</option>
+    <option value="WdShing">Wood Shingles</option>
+  </select>
+</div>
+<div class="question" id="question25">
+  <h3>MasVnrType: Masonry veneer type</h3>
+  <select id="masvnrtype">
+    <option value="BrkCmn">Brick Common</option>
+    <option value="BrkFace">Brick Face</option>
+    <option value="CBlock">Cinder Block</option>
+    <option value="None">None</option>
+    <option value="Stone">Stone</option>
+  </select>
+</div>
+
+<div class="question" id="question26">
+  <h3>MasVnrArea: Masonry veneer area in square feet</h3>
+  <input type="number" id="masvnrarea" placeholder="Enter area in square feet">
+</div>
+
+
+<div class="question" id="question27">
+  <h3>ExterQual: Evaluates the quality of the material on the exterior</h3>
+  <select id="exterqual">
+    <option value="Ex">Excellent</option>
+    <option value="Gd">Good</option>
+    <option value="TA">Average/Typical</option>
+    <option value="Fa">Fair</option>
+    <option value="Po">Poor</option>
+  </select>
+</div>
+<div class="question" id="question28">
+  <h3>ExterCond: Evaluate the present condition of the material on the exterior</h3>
+  <select id="extercond">
+    <option value="Ex">Excellent</option>
+    <option value="Gd">Good</option>
+    <option value="TA">Average/Typical</option>
+    <option value="Fa">Fair</option>
+    <option value="Po">Poor</option>
+  </select>
+</div>
+<div class="question" id="question29">
+  <h3>Foundation: Type of foundation</h3>
+  <select id="foundation">
+    <option value="BrkTil">Brick & Tile</option>
+    <option value="CBlock">Cinder Block</option>
+    <option value="PConc">Poured Contrete</option>
+    <option value="Slab">Slab</option>
+    <option value="Stone">Stone</option>
+    <option value="Wood">Wood</option>
+  </select>
+</div>
+<div class="question" id="question30">
+  <h3>BsmtQual: Evaluates the height of the basement</h3>
+  <select id="bsmtqual">
+    <option value="Ex">Excellent (100+ inches)</option>
+    <option value="Gd">Good (90-99 inches)</option>
+    <option value="TA">Typical (80-89 inches)</option>
+    <option value="Fa">Fair (70-79 inches)</option>
+    <option value="Po">Poor (Less than 70 inches)</option>
+    <option value="NA">No Basement</option>
+  </select>
+</div>
+<div class="question" id="question31">
+  <h3>BsmtCond: Evaluates the general condition of the basement</h3>
+  <select id="bsmtcond">
+    <option value="Ex">Excellent</option>
+    <option value="Gd">Good</option>
+    <option value="TA">Typical - slight dampness allowed</option>
+    <option value="Fa">Fair - dampness or some cracking or settling</option>
+    <option value="Po">Poor - Severe cracking, settling, or wetness</option>
+    <option value="NA">No Basement</option>
+  </select>
+</div>
+<div class="question" id="question32">
+  <h3>BsmtExposure: Refers to walkout or garden level walls</h3>
+  <select id="bsmtexposure">
+    <option value="Gd">Good Exposure</option>
+    <option value="Av">Average Exposure (split levels or foyers typically score average or above)</option>
+    <option value="Mn">Mimimum Exposure</option>
+    <option value="No">No Exposure</option>
+    <option value="NA">No Basement</option>
+  </select>
+</div>
+<div class="question" id="question33">
+  <h3>BsmtFinType1: Rating of basement finished area</h3>
+  <select id="bsmtfintype1">
+    <option value="GLQ">Good Living Quarters</option>
+    <option value="ALQ">Average Living Quarters</option>
+    <option value="BLQ">Below Average Living Quarters</option>
+    <option value="Rec">Average Rec Room</option>
+    <option value="LwQ">Low Quality</option>
+    <option value="Unf">Unfinshed</option>
+    <option value="NA">No Basement</option>
+  </select>
+</div>
+<div class="question" id="question34">
+  <h3>BsmtFinSF1:  amount of finished square feet of basement</h3>
+  <input type="number" id="bsmtfinsf1" name="bsmtfinsf1" placeholder="Enter area in square feet">
+</div>
+
+<div class="question" id="question35">
+  <h3>BsmtFinType2: Rating of basement finished area (if multiple types)</h3>
+  <select id="bsmtfintype2">
+    <option value="GLQ">Good Living Quarters</option>
+    <option value="ALQ">Average Living Quarters</option>
+    <option value="BLQ">Below Average Living Quarters</option>
+    <option value="Rec">Average Rec Room</option>
+    <option value="LwQ">Low Quality</option>
+    <option value="Unf">Unfinshed</option>
+    <option value="NA">No Basement</option>
+  </select>
+</div>
+
+<div class="question" id="question36">
+  <h3>BsmtFinSF2: Type 2 finished square feet</h3>
+  <input type="number" id="bsmtfinsf2" name="bsmtfinsf2" placeholder="Enter area in square feet">
+</div>
+<div class="question" id="question37">
+  <h3>BsmtUnfSF: Unfinished square feet of basement area</h3>
+  <input type="number" id="bsmtunfsf" name="bsmtunfsf" placeholder="Enter area in square feet">
+</div>
+<div class="question" id="question38">
+  <h3>TotalBsmtSF: Total square feet of basement area</h3>
+  <input type="number" id="totalbsmtsf" name="totalbsmtsf" placeholder="Enter area in square feet">
+</div>
+
+<div class="question" id="question39">
+  <h3>Heating: Type of heating</h3>
+  <select id="heating" name="heating">
+    <option value="Floor">Floor Furnace</option>
+    <option value="GasA">Gas forced warm air furnace</option>
+    <option value="GasW">Gas hot water or steam heat</option>
+    <option value="Grav">Gravity furnace</option>
+    <option value="OthW">Hot water or steam heat other than gas</option>
+    <option value="Wall">Wall furnace</option>
+  </select>
+</div>
+<div class="question" id="question40">
+  <h3>HeatingQC: Heating quality and condition</h3>
+  <select id="heatingqc" name="heatingqc">
+    <option value="Ex">Excellent</option>
+    <option value="Gd">Good</option>
+    <option value="TA">Average/Typical</option>
+    <option value="Fa">Fair</option>
+    <option value="Po">Poor</option>
+  </select>
+</div>
+<div class="question" id="question41">
+  <h3>CentralAir: Central air conditioning</h3>
+  <select id="centralair" name="centralair">
+    <option value="N">No</option>
+    <option value="Y">Yes</option>
+  </select>
+</div>
+<div class="question" id="question42">
+  <h3>Electrical: Electrical system</h3>
+  <select id="electrical" name="electrical">
+    <option value="SBrkr">Standard Circuit Breakers & Romex</option>
+    <option value="FuseA">Fuse Box over 60 AMP and all Romex wiring (Average)</option>
+    <option value="FuseF">60 AMP Fuse Box and mostly Romex wiring (Fair)</option>
+    <option value="FuseP">60 AMP Fuse Box and mostly knob & tube wiring (Poor)</option>
+    <option value="Mix">Mixed</option>
+  </select>
+</div>
+
+<div class="question" id="question43">
+  <h3>1stFlrSF: First Floor square feet</h3>
+  <input type="number" id="1stFlrSF" name="1stFlrSF" placeholder="Enter area in square feet">
+</div>
+<div class="question" id="question44">
+  <h3>2ndFlrSF: Second floor square feet</h3>
+  <input type="number" id="2ndFlrSF" name="2ndFlrSF" placeholder="Enter area in square feet">
+</div>
+<div class="question" id="question45">
+  <h3>LowQualFinSF: Low quality finished square feet (all floors)</h3>
+  <input type="number" id="LowQualFinSF" name="LowQualFinSF" placeholder="Enter area in square feet">
+</div>
+<div class="question" id="question46">
+  <h3>GrLivArea: Above grade (ground) living area square feet</h3>
+  <input type="number" id="GrLivArea" name="GrLivArea" placeholder="Enter area in square feet">
+</div>
+<div class="question" id="question47">
+  <h3>BsmtFullBath: Basement full bathrooms</h3>
+  <input type="number" id="BsmtFullBath" name="BsmtFullBath" placeholder="Enter your answer">
+</div>
+<div class="question" id="question48">
+  <h3>BsmtHalfBath: Basement half bathrooms</h3>
+  <input type="number" id="BsmtHalfBath" name="BsmtHalfBath" placeholder="Enter your answer">
+</div>
+<div class="question" id="question49">
+  <h3>FullBath: Full bathrooms above grade</h3>
+  <input type="number" id="FullBath" name="FullBath" placeholder="Enter your answer">
+</div>
+<div class="question" id="question50">
+  <h3>HalfBath: Half baths above grade</h3>
+  <input type="number" id="HalfBath" name="HalfBath" placeholder="Enter your answer">
+</div>
+<div class="question" id="question51">
+  <h3>Bedroom: Bedrooms above grade (does NOT include basement bedrooms)</h3>
+  <input type="number" id="Bedroom" name="Bedroom" placeholder="Enter your answer">
+</div>
+<div class="question" id="question52">
+  <h3>Kitchen: Kitchens above grade</h3>
+  <input type="number" id="Kitchen" name="Kitchen" placeholder="Enter your answer">
+</div>
+
+<div class="question" id="question53">
+  <h3>KitchenQual: Kitchen quality</h3>
+  <select name="KitchenQual" id="KitchenQual">
+    <option value="Ex">Excellent</option>
+    <option value="Gd">Good</option>
+    <option value="TA">Typical/Average</option>
+    <option value="Fa">Fair</option>
+    <option value="Po">Poor</option>
+  </select>
+</div>
+
+
+<div class="question" id="question54">
+  <h3>TotRmsAbvGrd: Total rooms above grade (does not include bathrooms)</h3>
+  <input type="number" name="TotRmsAbvGrd" id="TotRmsAbvGrd" placeholder="Enter your answer">
+</div>
+
+<div class="question" id="question55">
+  <h3>Functional: Home functionality</h3>
+  <select name="Functional" id="Functional">
+    <option value="Typ">Typical Functionality</option>
+    <option value="Min1">Minor Deductions 1</option>
+    <option value="Min2">Minor Deductions 2</option>
+    <option value="Mod">Moderate Deductions</option>
+    <option value="Maj1">Major Deductions 1</option>
+    <option value="Maj2">Major Deductions 2</option>
+    <option value="Sev">Severely Damaged</option>
+    <option value="Sal">Salvage only</option>
+  </select>
+</div>
+    
+<div class="question" id="question56">
+  <h3>Fireplaces: Number of fireplaces</h3>
+  <input type="text" id="Fireplaces" name="Fireplaces" placeholder="Enter your answer">
+</div>
+
+<div class="question" id="question57">
+  <h3>FireplaceQu: Fireplace quality</h3>
+  <select name="FireplaceQu" id="FireplaceQu">
+    <option value="Ex">Excellent - Exceptional Masonry Fireplace</option>
+    <option value="Gd">Good - Masonry Fireplace in main level</option>
+    <option value="TA">Average - Prefabricated Fireplace in main living area or Masonry Fireplace in basement</option>
+    <option value="Fa">Fair - Prefabricated Fireplace in basement</option>
+    <option value="Po">Poor - Ben Franklin Stove</option>
+    <option value="NA">No Fireplace</option>
+  </select>
+</div>
+<div class="question" id="question58">
+  <h3>GarageType: Garage location</h3>
+  <select name="GarageType" id="GarageType">
+    <option value="2Types">More than one type of garage</option>
+    <option value="Attchd">Attached to home</option>
+    <option value="Basment">Basement Garage</option>
+    <option value="BuiltIn">Built-In (Garage part of house - typically has room above garage)</option>
+    <option value="CarPort">Car Port</option>
+    <option value="Detchd">Detached from home</option>
+    <option value="NA">No Garage</option>
+  </select>
+</div>
+
+<div class="question" id="question59">
+  <h3>GarageYrBlt: Year garage was built</h3>
+  <input type="number" name="GarageYrBlt" id="GarageYrBlt" placeholder="Enter year">
+</div>
+
+<div class="question" id="question60">
+  <h3>GarageFinish: Interior finish of the garage</h3>
+  <select name="GarageFinish" id="GarageFinish">
+    <option value="Fin">Finished</option>
+    <option value="RFn">Rough Finished</option>
+    <option value="Unf">Unfinished</option>
+    <option value="NA">No Garage</option>
+  </select>
+</div>
+
+<div class="question" id="question61">
+  <h3>GarageCars: Size of garage in car capacity</h3>
+  <input type="number" name="GarageCars" id="GarageCars" placeholder="Enter your answer">
+</div>
+<div class="question" id="question62">
+  <h3>GarageArea: Size of garage in square feet</h3>
+  <input type="number" name="GarageArea" id="GarageArea" placeholder="Enter area in square feet">
+</div>
+<div class="question" id="question63">
+  <h3>GarageQual: Garage quality</h3>
+  <select name="GarageQual" id="GarageQual">
+    <option value="Ex">Excellent</option>
+    <option value="Gd">Good</option>
+    <option value="TA">Typical/Average</option>
+    <option value="Fa">Fair</option>
+    <option value="Po">Poor</option>
+    <option value="NA">No Garage</option>
+  </select>
+</div>
+<div class="question" id="question64">
+  <h3>GarageCond: Garage condition</h3>
+  <select name="GarageCond" id="GarageCond">
+    <option value="Ex">Excellent</option>
+    <option value="Gd">Good</option>
+    <option value="TA">Typical/Average</option>
+    <option value="Fa">Fair</option>
+    <option value="Po">Poor</option>
+    <option value="NA">No Garage</option>
+  </select>
+</div>
+<div class="question" id="question65">
+  <h3>PavedDrive: Paved driveway</h3>
+  <select name="PavedDrive" id="PavedDrive">
+    <option value="Y">Paved</option>
+    <option value="P">Partial Pavement</option>
+    <option value="N">Dirt/Gravel</option>
+  </select>
+</div>
+
+<div class="question" id="question66">
+  <h3>WoodDeckSF: Wood deck area in square feet</h3>
+  <input type="number" name="WoodDeckSF" id="WoodDeckSF" placeholder="Enter area in square feet">
+</div>
+<div class="question" id="question67">
+  <h3>OpenPorchSF: Open porch area in square feet</h3>
+  <input type="number" name="OpenPorchSF" id="OpenPorchSF" placeholder="Enter area in square feet">
+</div>
+<div class="question" id="question68">
+  <h3>EnclosedPorch: Enclosed porch area in square feet</h3>
+  <input type="number" name="EnclosedPorch" id="EnclosedPorch" placeholder="Enter area in square feet">
+</div>
+<div class="question" id="question69">
+  <h3>3SsnPorch: Three season porch area in square feet</h3>
+  <input type="number" name="3SsnPorch" id="3SsnPorch" placeholder="Enter area in square feet">
+</div>
+<div class="question" id="question70">
+  <h3>ScreenPorch: Screen porch area in square feet</h3>
+  <input type="number" name="ScreenPorch" id="ScreenPorch" placeholder="Enter area in square feet">
+</div>
+<div class="question" id="question71">
+  <h3>PoolArea: Pool area in square feet</h3>
+  <input type="number" name="PoolArea" id="PoolArea" placeholder="Enter area in square feet">
+</div>
+<div class="question" id="question72">
+  <h3>PoolQC: Pool quality</h3>
+  <select name="PoolQC" id="PoolQC">
+    <option value="Ex">Excellent</option>
+    <option value="Gd">Good</option>
+    <option value="TA">Average/Typical</option>
+    <option value="Fa">Fair</option>
+    <option value="NA">No Pool</option>
+  </select>
+</div>
+<div class="question" id="question73">
+  <h3>Fence: Fence quality</h3>
+  <select name="Fence" id="Fence">
+    <option value="GdPrv">Good Privacy</option>
+    <option value="MnPrv">Minimum Privacy</option>
+    <option value="GdWo">Good Wood</option>
+    <option value="MnWw">Minimum Wood/Wire</option>
+    <option value="NA">No Fence</option>
+  </select>
+</div>
+<div class="question" id="question74">
+  <h3>MiscFeature: Miscellaneous feature not covered in other categories</h3>
+  <select name="MiscFeature" id="MiscFeature">
+    <option value="Elev">Elevator</option>
+    <option value="Gar2">2nd Garage (if not described in garage section)</option>
+    <option value="Othr">Other</option>
+    <option value="Shed">Shed (over 100 SF)</option>
+    <option value="TenC">Tennis Court</option>
+    <option value="NA">None</option>
+  </select>
+</div>
+
+<div class="question" id="question75">
+  <h3>MiscVal: $Value of miscellaneous feature</h3>
+  <input type="number" name="MiscVal" id="MiscVal" placeholder="Enter your answer">
+</div>
+<div class="question" id="question76">
+  <h3>MoSold: Month Sold (MM)</h3>
+  <input type="number" name="MoSold" id="MoSold" placeholder="Enter your answer">
+</div>
+<div class="question" id="question77">
+  <h3>YrSold: Year Sold (YYYY)</h3>
+  <input type="number" name="YrSold" id="YrSold" placeholder="Enter your answer">
+</div>
+<div class="question" id="question78">
+  <h3>SaleType: Type of sale</h3>
+  <select name="SaleType" id="SaleType">
+    <option value="WD">Warranty Deed - Conventional</option>
+    <option value="CWD">Warranty Deed - Cash</option>
+    <option value="VWD">Warranty Deed - VA Loan</option>
+    <option value="New">Home just constructed and sold</option>
+    <option value="COD">Court Officer Deed/Estate</option>
+    <option value="Con">Contract 15% Down payment regular terms</option>
+    <option value="ConLw">Contract Low Down payment and low interest</option>
+    <option value="ConLI">Contract Low Interest</option>
+    <option value="ConLD">Contract Low Down</option>
+    <option value="Oth">Other</option>
+  </select>
+</div>
+<div class="question" id="question79">
+  <h3>SaleCondition: Condition of sale</h3>
+  <select name="SaleCondition" id="SaleCondition">
+    <option value="Normal">Normal Sale</option>
+    <option value="Abnorml">Abnormal Sale - trade, foreclosure, short sale</option>
+    <option value="AdjLand">Adjoining Land Purchase</option>
+    <option value="Alloca">Allocation - two linked properties with separate deeds, typically condo with a garage unit</option>
+    <option value="Family">Sale between family members</option>
+    <option value="Partial">Home was not completed when last assessed (associated with New Homes)</option>
+  </select>
+</div>
+
+    <button type="button" onclick="previousQuestion()">Previous</button>
+    <button type="button" onclick="nextQuestion()">Next</button>
+    <button type="submit">Submit</button>
+  </form>
+  <div class="result">
+    <h1 class="price-title">
+      Predicted Price:
+    </h1>
+    <h2 class="prediction">
+      ----
+    </h2>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
